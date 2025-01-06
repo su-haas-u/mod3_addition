@@ -1,0 +1,29 @@
+#check if minimum required number of arguments are provided
+if [ "$#" -lt 4 ];
+then echo 1>&2 "Usage: Insuffucient number of arguments."
+exit 1
+fi
+
+
+sum=0;
+index=0;
+
+for i in $@; do
+
+#check if the argumnets entered are integers
+if [[ !$i =~ ^–?[0–9]+$ ]];
+then echo 1>&2 "Usage: The arguments enetered must be integers."
+fi
+
+#Checks if the index is a modulus of 3
+if (( index % 3 == 0));
+#Adds the value at the index to sum variable
+then sum=$((sum + i))
+fi
+#iterates through the index
+((index++))
+
+done
+
+#prints final sum
+echo $sum
